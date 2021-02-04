@@ -3,9 +3,11 @@ import { Server, Socket } from 'socket.io'
 
 import express from 'express'
 import routes from './routes'
+import database from './database/index'
 
 const app = express();
 const server = http.createServer(app);
+database()
 
 const io = new Server(server, {
     transports: ['websocket']
