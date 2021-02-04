@@ -19,6 +19,8 @@ io.on('connection', (socket: Socket) => {
         socket.on('message', (message: string) => {
             io.to(GENERAL).emit('receive', username, message);
         });
+
+        io.to(GENERAL).emit('register', username);
     });
 });
 
