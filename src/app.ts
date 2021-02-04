@@ -11,12 +11,16 @@ const io = new Server(server, {
     transports: ['websocket']
 });
 
+const GENERAL = 'salageral';
+
 io.on('connection', (socket: Socket) => {
+    socket.join(GENERAL);
+
     socket.on('message', (message: string) => {
-        console.log(message);
+        // salvar no banco
+        io.to(GENERAL).emit('receive', message);
     });
 
-    socket.on('join', () => { });
 });
 
 app.use(express.json());
