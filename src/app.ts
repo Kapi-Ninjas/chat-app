@@ -14,13 +14,12 @@ const io = new Server(server, {
 const GENERAL = 'salageral';
 
 io.on('connection', (socket: Socket) => {
-    socket.join(GENERAL);
-
-    socket.on('message', (message: string) => {
-        // salvar no banco
-        io.to(GENERAL).emit('receive', message);
+    socket.on('join', (username: string) => {
+        socket.join(GENERAL);
+        socket.on('message', (message: string) => {
+            io.to(GENERAL).emit('receive', username, message);
+        });
     });
-
 });
 
 app.use(express.json());
