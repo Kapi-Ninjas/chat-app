@@ -1,9 +1,13 @@
 import { Router } from 'express';
 
-import messagesRouter from './messages.route';
+import messageRoute from './message.route';
+import chatRoute from './chat.route';
+import userRoute from './user.route';
 
 const routes = Router();
 
-messagesRouter(routes);
+messageRoute(routes);
+chatRoute(routes);
+userRoute(routes);
 
 export default routes;
